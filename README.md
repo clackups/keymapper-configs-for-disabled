@@ -42,6 +42,10 @@ Comment=Remaps the keyboard for me
 EOT
 ```
 
+If you modify the configuration, keymapper detects it automatically,
+so you don't need to restart the process.
+
+
 ## Right-handed mirrored keyboard
 
 The mapping file `right_hand_mirrored_keymapper.conf` translates long
