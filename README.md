@@ -55,6 +55,8 @@ keys from the left half: Long-pressing P produces Q, and so on.
 The long press timeout is set to 300ms, and can be set to a higher
 value in configuration file if needed.
 
+Autorepeat is disabled on mapped keys, so a long press registers only
+one keycode.
 
 
 ## Copyright and license
