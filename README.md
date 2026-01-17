@@ -48,12 +48,8 @@ The mapping file `right_hand_mirrored_keymapper.conf` translates long
 presses on the keys of the right half of the keyboard into mirrored
 keys from the left half: Long-pressing P produces Q, and so on.
 
-Installation steps under Ubuntu:
-
-```
-
-git clone
-
+The long press timeout is set to 300ms, and can be set to a higher
+value in configuration file if needed.
 
 
 
