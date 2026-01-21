@@ -8,55 +8,56 @@ The Keymapper installation binaries for Linux, MacOS and Windows are
 available on its [Releases
 page](https://github.com/houmain/keymapper/releases).
 
-Installation steps under Ubuntu:
+Installation and setup for Ubuntu:
 
-```
-wget https://github.com/houmain/keymapper/releases/download/5.3.1/keymapper-5.3.1-Linux-x86_64.deb
-sudo apt install ./keymapper-5.3.1-Linux-x86_64.deb
-
-# trying without automatic startup
-sudo systemctl start keymapperd
-
-# copy the keymapper configuration
+```bash
 git clone https://github.com/clackups/keymapper-configs-for-disabled.git
+cd keymapper-configs-for-disabled
 
-cp keymapper-configs-for-disabled/right_hand_mirrored_keymapper.conf ~/.config/keymapper.conf
-
-# start the keymapper
-nohup keymapper -u &
-
-######
-# setting it up for automatic startup
-sudo systemctl enable keymapperd
-
-# add the startup command to the session startup
-mkdir -p ~/.config/autostart
-
-cat >~/.config/autostart/keymapper.desktop <<'EOT'
-[Desktop Entry]
-Type=Application
-Exec=sh -c "/usr/bin/keymapper -u >>$HOME/.var/keymapper.log 2>&1"
-Hidden=false
-Name=Keymapper
-Comment=Remaps the keyboard for me
-EOT
+# Run setup script (configures autostart and selects config)
+bash setup_ubuntu.sh
 ```
+
+The `setup_ubuntu.sh` script will configure autostart and show an interactive menu to select your keyboard configuration.
 
 If you modify the configuration, keymapper detects it automatically,
 so you don't need to restart the process.
 
+## Available configurations
 
-## Right-handed mirrored keyboard
+### Multi-tap keyboard
 
-The mapping file `right_hand_mirrored_keymapper.conf` translates long
-presses on the keys of the right half of the keyboard into mirrored
-keys from the left half: Long-pressing P produces Q, and so on.
+The mapping file `multitap.conf` enables multi-tap sequences on bottom row keys (Z, X, C, V, B, N, M, ,, ., /):
 
-The long press timeout is set to 300ms, and can be set to a higher
-value in configuration file if needed.
+- **Single tap**: outputs the key itself
+- **Double tap**: backspace + mapped character (e.g., Z Z → backspace + A)
+- **Triple tap**: backspace + mapped character (e.g., Z Z Z → backspace + Q)
+- **Quad tap**: backspace + mapped character (e.g., Z Z Z Z → backspace + 1)
 
-Autorepeat is disabled on mapped keys, so a long press registers only
-one keycode.
+Each key maps vertically up its QWERTY column, allowing single-handed access to the entire keyboard.
+
+
+### Right-hand mirrored keyboard
+
+The `right_hand_mirrored_keymapper.conf` maps the right half of the keyboard to produce left half keystrokes on long press (300ms). The left half remains unchanged.
+
+**Use case**: Single-handed operation using the right hand, or when the left hand is unavailable.
+
+
+### Left-hand mirrored keyboard
+
+The `left_hand_mirrored_keymapper.conf` maps the left half of the keyboard to produce right half keystrokes on long press (300ms). The right half remains unchanged.
+
+**Use case**: Single-handed operation using the left hand, or when the right hand is unavailable.
+
+
+### Full mirrored keyboard
+
+The `full_mirrored_keymapper.conf` includes both left and right side mappings. Both halves are mirrored along the center line:
+- Left half keys map to right half keys on long press
+- Right half keys map to left half keys on long press
+
+**Use case**: Maximum flexibility for either-handed or two-handed operation with full keyboard access from either side.
 
 
 ## Copyright and license
