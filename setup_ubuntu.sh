@@ -19,26 +19,37 @@ configs=(
     "Full mirrored (both hands):full_mirrored_keymapper.conf"
 )
 
-# Setup autostart
+# Setup autostart using desktop entry for user session
 setup_autostart() {
     echo "Setting up autostart..."
 
     # Enable keymapper daemon
     sudo systemctl enable keymapperd 2>/dev/null || true
 
-    # Create autostart desktop entry
-    mkdir -p ~/.config/autostart
+    echo "✓ System daemon enabled"
+}
 
-    cat >~/.config/autostart/keymapper.desktop <<EOT
+# Update autostart with selected config using desktop entry
+update_autostart() {
+    local config_file="$1"
+    local config_name="$(basename "$config_file")"
+    local autostart_file="$HOME/.config/autostart/keymapper.desktop"
+
+    mkdir -p "$(dirname "$autostart_file")"
+
+    # Create desktop entry pointing to our autostart script
+    cat >"$autostart_file" <<EOT
 [Desktop Entry]
 Type=Application
-Exec=sh -c "/usr/bin/keymapper -c $SCRIPT_DIR/multitap.conf -u >>\$HOME/.var/keymapper.log 2>&1"
-Hidden=false
 Name=Keymapper
 Comment=Remaps the keyboard for me
+Exec=$SCRIPT_DIR/autostart.sh $config_name
+Hidden=false
+Terminal=false
+X-GNOME-Autostart-enabled=true
 EOT
 
-    echo "✓ Autostart configured"
+    echo "✓ Autostart configured with: $config_name"
 }
 
 # Display menu
@@ -93,11 +104,15 @@ while true; do
             [ ! -f "$CONFIG_FILE" ] && echo "Error: $CONFIG_FILE not found" && read && continue
             pkill -f "keymapper" 2>/dev/null || true
             sleep 1
+            # Update autostart with selected config
+            update_autostart "$CONFIG_FILE"
+
             nohup keymapper -c "$CONFIG_FILE" -u > /dev/null 2>&1 &
             clear
             echo "✓ Setup complete"
             echo "✓ Configuration: $name"
             echo "✓ Config file: $file"
+            echo "✓ Autostart configured"
             echo "✓ Keymapper started"
             exit 0
             ;;
