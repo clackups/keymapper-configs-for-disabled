@@ -18,7 +18,13 @@ cd keymapper-configs-for-disabled
 bash setup_ubuntu.sh
 ```
 
-The `setup_ubuntu.sh` script will configure autostart and show an interactive menu to select your keyboard configuration.
+The `setup_ubuntu.sh` script will:
+1. Install Keymapper if needed (checks first)
+2. Enable the keymapper daemon
+3. Create a user session autostart entry
+4. Show an interactive menu to select your keyboard configuration
+
+The autostart system uses a desktop entry that calls a script for reliable loading.
 
 If you modify the configuration, keymapper detects it automatically,
 so you don't need to restart the process.
