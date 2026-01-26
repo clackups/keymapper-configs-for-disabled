@@ -33,14 +33,28 @@ so you don't need to restart the process.
 
 ### Multi-tap keyboard
 
-The mapping file `multitap.conf` enables multi-tap sequences on bottom row keys (Z, X, C, V, B, N, M, ,, ., /):
+The mapping file `multitap.conf` enables multi-tap sequences with up to 12 taps per key for single-handed keyboard access.
 
-- **Single tap**: outputs the key itself
-- **Double tap**: backspace + mapped character (e.g., Z Z → backspace + A)
-- **Triple tap**: backspace + mapped character (e.g., Z Z Z → backspace + Q)
-- **Quad tap**: backspace + mapped character (e.g., Z Z Z Z → backspace + 1)
+**Bottom row keys (Z, X, C, V, B, N, M, Comma, Period, Slash):**
+- Each key cycles through 3 mapped characters (e.g., Z → A → Q → Z...)
+- Supports up to 12 taps with repeating pattern
+- Example: Z key cycles through Q, A, Z
 
-Each key maps vertically up its QWERTY column, allowing single-handed access to the entire keyboard.
+**Home row keys (A, S, D, F, G, H, J, K, L, Semicolon):**
+- Each key cycles through 2 mapped characters (different from bottom row)
+- Map to top row characters above them
+- Example: A key cycles through Q, A
+
+**Special keys (Backslash, Quote):**
+- Backslash → cycles between BracketRight (]) and Backslash (\)
+- Quote (') → cycles between BracketLeft ([) and Quote (')
+
+**Numpad keys (Numpad1, Numpad2, Numpad3):**
+- Numpad1 → cycles through 1, 4, 7
+- Numpad2 → cycles through 2, 5, 8
+- Numpad3 → cycles through 3, 6, 9
+
+Each key's multi-tap sequence repeats its pattern across 12 taps, allowing single-handed access to the entire keyboard layout.
 
 
 ### Right-hand mirrored keyboard
