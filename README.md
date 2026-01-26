@@ -8,9 +8,16 @@ The Keymapper installation binaries for Linux, MacOS and Windows are
 available on its [Releases
 page](https://github.com/houmain/keymapper/releases).
 
-Installation and setup for Ubuntu:
+## Installation and Setup
+
+### Ubuntu/Linux
 
 ```bash
+# Install Keymapper first
+wget https://github.com/houmain/keymapper/releases/download/5.3.1/keymapper-5.3.1-Linux-x86_64.deb
+sudo apt install ./keymapper-5.3.1-Linux-x86_64.deb
+
+# Clone the keymapper configurations
 git clone https://github.com/clackups/keymapper-configs-for-disabled.git
 cd keymapper-configs-for-disabled
 
@@ -19,12 +26,29 @@ bash setup_ubuntu.sh
 ```
 
 The `setup_ubuntu.sh` script will:
-1. Install Keymapper if needed (checks first)
+1. Check and install Keymapper if needed
 2. Enable the keymapper daemon
 3. Create a user session autostart entry
 4. Show an interactive menu to select your keyboard configuration
 
-The autostart system uses a desktop entry that calls a script for reliable loading.
+### Windows (not tested)
+
+```cmd
+# Clone the keymapper configurations
+git clone https://github.com/clackups/keymapper-configs-for-disabled.git
+cd keymapper-configs-for-disabled
+
+# Run setup script
+setup_windows.bat
+```
+
+The `setup_windows.bat` script will:
+1. Check and install Keymapper if needed
+2. Create a startup shortcut in the Windows startup folder
+3. Show an interactive menu to select your keyboard configuration
+4. Configure the startup shortcut with the selected config
+
+**Note:** The script requires administrator privileges to install Keymapper and create startup shortcuts.
 
 If you modify the configuration, keymapper detects it automatically,
 so you don't need to restart the process.
