@@ -31,27 +31,26 @@ The `setup_ubuntu.sh` script will:
 3. Create a user session autostart entry
 4. Show an interactive menu to select your keyboard configuration
 
-### Windows (not tested)
+### Windows
 
-```cmd
-# Clone the keymapper configurations
-git clone https://github.com/clackups/keymapper-configs-for-disabled.git
-cd keymapper-configs-for-disabled
+1. Download and install the Keymapper Windows installer from the
+[project release page](https://github.com/houmain/keymapper/releases)
+(keymapper-5.3.0-Windows-x86_64.msi or newer).
 
-# Run setup script
-setup_windows.bat
-```
+2. During the installation, it will complain that configuration is not
+found (which is alright).
 
-The `setup_windows.bat` script will:
-1. Check and install Keymapper if needed
-2. Create a startup shortcut in the Windows startup folder
-3. Show an interactive menu to select your keyboard configuration
-4. Configure the startup shortcut with the selected config
+3. Once it's installed, there's the Keymapper icon in the corner of
+your taskbar. Right-click it, choose Configuration, and choose Notepad
+or your favorite editor for it.
 
-**Note:** The script requires administrator privileges to install Keymapper and create startup shortcuts.
+4. Copy one of configurations from this github repository and adapt,
+if needed.
 
-If you modify the configuration, keymapper detects it automatically,
-so you don't need to restart the process.
+5. Save the file, and Keymapper will automatically load the update. If
+you don't plan to edit the configuration further, yoou can close the
+editor.
+
 
 ## Available configurations
 
