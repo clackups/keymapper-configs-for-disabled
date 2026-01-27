@@ -44,8 +44,8 @@ found (which is alright).
 your taskbar. Right-click it, choose Configuration, and choose Notepad
 or your favorite editor for it.
 
-4. Copy one of configurations from this github repository and adapt,
-if needed.
+4. Copy the content of one of configurations from this github
+repository into the editor window and adapt, if needed.
 
 5. Save the file, and Keymapper will automatically load the update. If
 you don't plan to edit the configuration further, yoou can close the
